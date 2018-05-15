@@ -8,12 +8,12 @@ class Demographic(models.Model):
         max_length=50,
         choices=MARITAL_STATUS)
 
-    number_wives = models.IntegerField(
+    number_husbands = models.IntegerField(
         null=True,
         blank=True,
         verbose_name="If subject is a woman, how many wives does the husband have (traditional wives and subject included)",)
 
-    number_wives_men = models.IntegerField(
+    number_wives = models.IntegerField(
         null=True,
         blank=True,
         verbose_name="If subject is a man, how many wives does he have (traditional marriage included)?",)
