@@ -3,9 +3,9 @@ from tp_subject.choices import MARITAL_STATUS, LIVES_WITH
 
 
 class Demographic(models.Model):
-    #print("models")
+
     marital_status = models.CharField(
-        max_length=10,
+        max_length=50,
         choices=MARITAL_STATUS)
 
     number_wives = models.IntegerField(
