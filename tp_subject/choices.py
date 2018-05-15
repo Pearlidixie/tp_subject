@@ -1,3 +1,12 @@
+from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, MISSED_VISIT
+from edc_constants.constants import OTHER, NOT_APPLICABLE
+
+
+GENDER = (
+    ('male', 'Male'),
+    ('female', 'Female'),
+    ('other', 'Other'),
+)
 
 
 MARITAL_STATUS = (
@@ -21,14 +30,19 @@ YES_NO = (
 )
 
 TYPE_WORK = (
-    ('occassional or Casual', 'Occassional or Casual employment (piece job)'),
+    ('occassional or Casual',
+     'Occassional or Casual employment (piece job)'),
     ('seasonal employment', 'Seasonal employment'),
-    ('formal wage employment (full-time)', 'Formal wage employment (full-time)'),
-    ('formal wage employment (part-time)', 'Formal wage employment (part-time)'),
+    ('formal wage employment (full-time)',
+     'Formal wage employment (full-time)'),
+    ('formal wage employment (part-time)',
+     'Formal wage employment (part-time)'),
     ('self-employed in agriculture', 'Self-employed in agriculture'),
-    ('self-employed making money, full time', 'Self-employed making money, full time'),
-    ('self-employed making money, part time', 'Self-employed making money, part time'),
-    ('don\'t want to answer', 'Don\'t want to answer'),
+    ('self-employed making money, full time',
+     'Self-employed making money, full time'),
+    ('self-employed making money, part time',
+     'Self-employed making money, part time'),
+    ('don\'t want to answer', 'DNWA'),
     ('other', 'Other'),
 )
 
@@ -36,7 +50,8 @@ WORK_DONE = (
     ('farmer (own land)', 'Farmer (own land)'),
     ('farm work on employers land', 'Farm work on employers land'),
     ('domestic worker', 'Domestic worker'),
-    ('work in bar/ hotel/ guest house/ entertainment venue', 'Work in bar/ hotel/ guest house/ entertainment venue'),
+    ('work in bar/ hotel/ guest house/ entertainment venue',
+     'Work in bar/ hotel/ guest house/ entertainment venue'),
     ('fishing', 'Fishing'),
     ('mining', 'Mining'),
     ('Tourism/game parks', 'Tourism/game parks'),
@@ -62,9 +77,9 @@ SALARY = (
     ('200-499 pula', '200-499 pula'),
     ('500-999 pula', '500-999 pula'),
     ('1000-4999 pula', '1000-4999 pula'),
-    ('5000-10,000 pula','5000-10,000 pula'),
+    ('5000-10,000 pula', '5000-10,000 pula'),
     ('more than 10,000 pula', 'More than 10,000 pula'),
-    ('don\'t want to answer','Don\'t want to answer'),
+    ('don\'t want to answer', 'Don\'t want to answer'),
 )
 
 HOW_ACTIVE = (
@@ -77,8 +92,7 @@ HOW_ACTIVE = (
 YES_NO_NA = (
     ('yes', 'Yes'),
     ('no', 'No'),
-    ('not applicable', 'N/A'),
-    ('don\'t want to answer', 'Don\'t want to answer'),
+    ('N/A', 'NOT_APPLICABLE'),
 )
 
 YES_NO_DONTKNOW = (
@@ -98,3 +112,28 @@ PROBLEMS = (
     ('House', 'House'),
     ('Malaria', 'Malaria'),
     )
+
+INFO_SOURCE = (
+    ('hospital_notes', 'Hospital notes'),
+    ('outpatient_cards', 'Outpatient cards'),
+    ('patient', 'Patient'),
+    ('collateral_history',
+     'Collateral History from relative/guardian'),
+    (OTHER, 'Other'),
+)
+
+VISIT_UNSCHEDULED_REASON = (
+    ('patient_unwell_outpatient', 'Patient unwell (outpatient)'),
+    ('recurrence_symptoms', 'Recurrence of symptoms'),
+    ('raised_icp_management', 'Raised ICP management'),
+    ('art_initiation', 'ART initiation'),
+    ('patient_hospitalised', 'Patient hospitalised'),
+    (OTHER, 'Other'),
+    (NOT_APPLICABLE, 'Not applicable'),
+)
+
+VISIT_REASON = (
+    (SCHEDULED, 'Scheduled'),
+    (UNSCHEDULED, 'Not scheduled'),
+    (MISSED_VISIT, 'Missed'),
+)
