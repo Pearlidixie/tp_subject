@@ -13,5 +13,5 @@ demographic = Recipe(
     Demographic,
     marital_status=MARRIED,
     number_wives=1,
-    number_husbands=NOT_APPLICABLE,
+    number_husbands=None,
     lives_with=40)
