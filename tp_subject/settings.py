@@ -14,7 +14,9 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+APP_NAME = 'tp_subject'
+ETC_DIR = os.path.join(BASE_DIR, 'etc')
+SITE_ID = 1
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -37,7 +39,31 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tp_subject.apps.Tp_SubjectConfig',
+    'django.contrib.sites',
+    'django_crypto_fields.apps.AppConfig',
+    'django_revision.apps.AppConfig',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'edc_base.apps.AppConfig',
+    'edc_prn.apps.AppConfig',
+    'edc_pharmacy.apps.AppConfig',
+    'edc_reference.apps.AppConfig',
+    'edc_metadata_rules.apps.AppConfig',
+    'edc_consent.apps.AppConfig',
+    'edc_timepoint.apps.AppConfig',
+    'edc_device.apps.AppConfig',
+    'edc_registration.apps.AppConfig',
+    'edc_visit_schedule.apps.AppConfig',
+    'edc_sync.apps.AppConfig',
+    'edc_sync_files.apps.AppConfig',
+    'tp_screening.apps.AppConfig',
+    'tp_subject.apps.EdcFacilityAppConfig',
+    'tp_subject.apps.EdcMetadataAppConfig',
+    'tp_subject.apps.EdcIdentifierAppConfig',
+    'tp_subject.apps.EdcProtocolAppConfig',
+    'tp_subject.apps.EdcAppointmentAppConfig',
+    'tp_subject.apps.EdcVisitTrackingAppConfig',
+    'tp_subject.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +145,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+COUNTRY = 'botswana'
+HOLIDAY_FILE = os.path.join(BASE_DIR, 'holidays.csv')
+GIT_DIR = BASE_DIR
+
+EDC_SYNC_SERVER_IP = None
+EDC_SYNC_FILES_REMOTE_HOST = None
+EDC_SYNC_FILES_USER = None
+EDC_SYNC_FILES_USB_VOLUME = None
+
+DASHBOARD_URL_NAMES = {
+    'subject_listboard_url': 'ambition_dashboard:subject_listboard_url',
+    'screening_listboard_url': 'ambition_dashboard:screening_listboard_url',
+    'subject_dashboard_url': 'ambition_dashboard:subject_dashboard_url',
+}
