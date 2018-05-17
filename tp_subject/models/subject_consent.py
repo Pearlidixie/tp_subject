@@ -1,7 +1,7 @@
 from edc_consent.model_mixins import ConsentModelMixin
 from edc_base.sites.site_model_mixin import SiteModelMixin
 from edc_consent.field_mixins import PersonalFieldsMixin
-from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
+from edc_identifier.model_mixins import UniqueSubjectIdentifierModelMixin
 from edc_base.model_mixins import BaseUuidModel
 from edc_consent.field_mixins.vulnerability_fields_mixin import VulnerabilityFieldsMixin
 from edc_consent.field_mixins.sample_collection_fields_mixin import SampleCollectionFieldsMixin
@@ -11,16 +11,27 @@ from django.db import models
 from ..constants import NOT_APPLICABLE, NO, YES
 from ..choices import YES_NO
 from django.apps import apps as django_apps
+from edc_search.model_mixins import SearchSlugManager
+from edc_consent.managers import ConsentManager
+from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 
 
-class SubjectConsent(ConsentModelMixin, SiteModelMixin, PersonalFieldsMixin,
-                     NonUniqueSubjectIdentifierModelMixin,
+class SubjectConsentManager(SearchSlugManager, models.Manager):
+
+    def get_by_natural_key(self, subject_identifier, version):
+        return self.get(
+            subject_identifier=subject_identifier, version=version)
+
+
+class SubjectConsent(ConsentModelMixin, SiteModelMixin, 
+                     UpdatesOrCreatesRegistrationModelMixin, PersonalFieldsMixin,
+                     UniqueSubjectIdentifierModelMixin,
                      SampleCollectionFieldsMixin, VulnerabilityFieldsMixin,
                      ReviewFieldsMixin, IdentityFieldsMixin, BaseUuidModel):
 
     """ A model completed by the user that captures the ICF.
     """
-    print('*****************')
+
     subject_screening_model = 'tp_screening.subjectscreening'
 
     screening_identifier = models.CharField(
@@ -33,6 +44,9 @@ class SubjectConsent(ConsentModelMixin, SiteModelMixin, PersonalFieldsMixin,
         default=NO,
         choices=YES_NO,
         editable=False)
+
+    objects = SubjectConsentManager()
+    consent = ConsentManager()
 
     def __str__(self):
         print(self.screening_identifier)
