@@ -8,6 +8,8 @@ from simple_history.admin import SimpleHistoryAdmin
 
 from tp_subject.forms.subject_consent_form import SubjectConsentForm
 from tp_subject.models.subject_consent import SubjectConsent
+from edc_consent.modeladmin_mixins import ModelAdminConsentMixin
+from tp_screening.forms.subject_screening_form import SubjectScreeningForm
 
 
 class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormAutoNumberMixin,
@@ -18,7 +20,7 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormAutoNumberMi
     empty_value_display = '-'
 
 
-class SubjectConsentAdmin(ModelAdminMixin, SimpleHistoryAdmin,
+class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin, SimpleHistoryAdmin,
                           admin.ModelAdmin):
 
     form = SubjectConsentForm
