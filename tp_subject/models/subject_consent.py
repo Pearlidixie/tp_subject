@@ -8,7 +8,7 @@ from edc_consent.field_mixins.sample_collection_fields_mixin import SampleCollec
 from edc_consent.field_mixins.review_fields_mixin import ReviewFieldsMixin
 from edc_consent.field_mixins.identity_fields_mixin import IdentityFieldsMixin
 from django.db import models
-from ..constants import NOT_APPLICABLE, NO, YES
+from ..constants import NOT_APPLICABLE, NO
 from ..choices import YES_NO
 from django.apps import apps as django_apps
 from edc_search.model_mixins import SearchSlugManager
@@ -49,7 +49,6 @@ class SubjectConsent(ConsentModelMixin, SiteModelMixin,
     consent = ConsentManager()
 
     def __str__(self):
-        print(self.screening_identifier)
         return f'{self.subject_identifier} V{self.version}'
 
     def save(self, *args, **kwargs):
